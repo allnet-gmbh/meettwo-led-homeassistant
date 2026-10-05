@@ -1,0 +1,14 @@
+{
+  "domain": "meettwo_led",
+  "name": "MeetTwo LED",
+  "codeowners": ["@allnet-gmbh"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/allnet-gmbh/meettwo-led-homeassistant",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/allnet-gmbh/meettwo-led-homeassistant/issues",
+  "requirements": [],
+  "version": "1.0.0",
+  "zeroconf": ["_meettwo-led._tcp.local."]
+}

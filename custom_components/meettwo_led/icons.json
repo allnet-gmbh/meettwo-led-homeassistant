@@ -1,0 +1,24 @@
+{
+  "entity": {
+    "light": {
+      "led_border": {
+        "default": "mdi:led-on"
+      }
+    },
+    "number": {
+      "effect_speed": {
+        "default": "mdi:speedometer"
+      }
+    },
+    "sensor": {
+      "last_error": {
+        "default": "mdi:alert-circle-outline"
+      }
+    }
+  },
+  "services": {
+    "set_effect": {
+      "service": "mdi:auto-fix"
+    }
+  }
+}

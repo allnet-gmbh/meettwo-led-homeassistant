@@ -1,0 +1,153 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "MeetTwo LED",
+        "description": "Gib die Adresse des MeetTwo-Geräts ein. Die IP-Adresse wird in der App „MeetTwo LED API“ angezeigt.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "password": "Passwort"
+        },
+        "data_description": {
+          "host": "IP-Adresse oder Hostname des MeetTwo-Geräts.",
+          "port": "In der App eingestellter HTTP-Port (Standard 8080).",
+          "password": "Nur nötig, wenn in der App ein Passwort gesetzt ist."
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "MeetTwo LED gefunden",
+        "description": "Möchtest du **{name}** ({host}) hinzufügen?",
+        "data": {
+          "password": "Passwort"
+        },
+        "data_description": {
+          "password": "Dieses Gerät ist geschützt. Gib das in der App „MeetTwo LED API“ gesetzte Passwort ein."
+        }
+      },
+      "reauth_confirm": {
+        "title": "MeetTwo LED erneut anmelden",
+        "description": "Das Passwort von **{name}** wurde geändert oder fehlt. Gib das aktuelle Passwort ein (leer lassen, wenn das Passwort entfernt wurde).",
+        "data": {
+          "password": "Passwort"
+        }
+      },
+      "reconfigure": {
+        "title": "MeetTwo LED neu konfigurieren",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "password": "Passwort"
+        },
+        "data_description": {
+          "host": "IP-Adresse oder Hostname des MeetTwo-Geräts.",
+          "port": "In der App eingestellter HTTP-Port (Standard 8080).",
+          "password": "Nur nötig, wenn in der App ein Passwort gesetzt ist."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung fehlgeschlagen. Prüfe Adresse und Port und stelle sicher, dass die App „MeetTwo LED API“ läuft.",
+      "invalid_auth": "Falsches Passwort.",
+      "password_required": "Dieses Gerät benötigt ein Passwort.",
+      "unsupported": "Auf dem Gerät läuft eine nicht unterstützte Version der App „MeetTwo LED API“. Bitte aktualisiere die App.",
+      "unknown": "Unerwarteter Fehler."
+    },
+    "abort": {
+      "already_configured": "Dieses Gerät ist bereits eingerichtet.",
+      "reauth_successful": "Erneute Anmeldung erfolgreich.",
+      "reconfigure_successful": "Neukonfiguration erfolgreich.",
+      "unique_id_mismatch": "Das ist ein anderes MeetTwo-Gerät.",
+      "unsupported": "Auf dem Gerät läuft eine nicht unterstützte Version der App „MeetTwo LED API“."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "MeetTwo LED Optionen",
+        "data": {
+          "scan_interval": "Aktualisierungsintervall"
+        },
+        "data_description": {
+          "scan_interval": "Wie oft Home Assistant den LED-Zustand vom Gerät abfragt."
+        }
+      }
+    }
+  },
+  "entity": {
+    "light": {
+      "led_border": {
+        "state_attributes": {
+          "effect": {
+            "state": {
+              "off": "Aus",
+              "blink": "Blinken",
+              "strobe": "Stroboskop",
+              "breathe": "Atmen",
+              "rainbow": "Regenbogen",
+              "cycle": "Farbwechsel",
+              "fade": "Farbverlauf"
+            }
+          }
+        }
+      }
+    },
+    "number": {
+      "effect_speed": {
+        "name": "Effektgeschwindigkeit"
+      }
+    },
+    "sensor": {
+      "last_error": {
+        "name": "Letzter Fehler"
+      }
+    },
+    "binary_sensor": {
+      "hardware_problem": {
+        "name": "LED-Hardware"
+      }
+    }
+  },
+  "selector": {
+    "effect": {
+      "options": {
+        "off": "Aus (statische Farbe)",
+        "blink": "Blinken",
+        "strobe": "Stroboskop",
+        "breathe": "Atmen",
+        "rainbow": "Regenbogen",
+        "cycle": "Farbwechsel",
+        "fade": "Farbverlauf"
+      }
+    }
+  },
+  "services": {
+    "set_effect": {
+      "name": "Effekt setzen",
+      "description": "Startet einen LED-Effekt mit optionaler Farbe, Farbliste, Geschwindigkeit und Helligkeit.",
+      "fields": {
+        "effect": {
+          "name": "Effekt",
+          "description": "Auszuführender Effekt. „Aus“ zeigt eine statische Farbe."
+        },
+        "color": {
+          "name": "Farbe",
+          "description": "Grundfarbe für Blinken, Stroboskop und Atmen: ein Name (red, darkorange, …), #RRGGBB oder r,g,b."
+        },
+        "colors": {
+          "name": "Farben",
+          "description": "Farben für Farbwechsel und Farbverlauf (Namen oder #RRGGBB)."
+        },
+        "speed": {
+          "name": "Geschwindigkeit",
+          "description": "Effektgeschwindigkeit in Millisekunden (Blinken/Atmen: ganze Periode, Regenbogen: ein Durchlauf, Farbwechsel/-verlauf: Zeit pro Farbe)."
+        },
+        "brightness_pct": {
+          "name": "Helligkeit",
+          "description": "Helligkeit in Prozent."
+        }
+      }
+    }
+  }
+}

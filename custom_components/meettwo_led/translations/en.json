@@ -1,0 +1,153 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "MeetTwo LED",
+        "description": "Enter the address of the MeetTwo device. The IP address is shown in the MeetTwo LED API app.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "password": "Password"
+        },
+        "data_description": {
+          "host": "IP address or hostname of the MeetTwo device.",
+          "port": "HTTP port configured in the app (default 8080).",
+          "password": "Only needed if a password is set in the app."
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "MeetTwo LED found",
+        "description": "Do you want to add **{name}** ({host})?",
+        "data": {
+          "password": "Password"
+        },
+        "data_description": {
+          "password": "This device is protected. Enter the password set in the MeetTwo LED API app."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate MeetTwo LED",
+        "description": "The password of **{name}** was changed or is missing. Enter the current password (leave empty if the password was removed).",
+        "data": {
+          "password": "Password"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure MeetTwo LED",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "password": "Password"
+        },
+        "data_description": {
+          "host": "IP address or hostname of the MeetTwo device.",
+          "port": "HTTP port configured in the app (default 8080).",
+          "password": "Only needed if a password is set in the app."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect. Check address and port and make sure the MeetTwo LED API app is running.",
+      "invalid_auth": "Wrong password.",
+      "password_required": "This device requires a password.",
+      "unsupported": "The device runs an unsupported version of the MeetTwo LED API app. Please update the app.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "reauth_successful": "Re-authentication was successful.",
+      "reconfigure_successful": "Re-configuration was successful.",
+      "unique_id_mismatch": "This is a different MeetTwo device.",
+      "unsupported": "The device runs an unsupported version of the MeetTwo LED API app."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "MeetTwo LED options",
+        "data": {
+          "scan_interval": "Update interval"
+        },
+        "data_description": {
+          "scan_interval": "How often Home Assistant reads the LED state from the device."
+        }
+      }
+    }
+  },
+  "entity": {
+    "light": {
+      "led_border": {
+        "state_attributes": {
+          "effect": {
+            "state": {
+              "off": "Off",
+              "blink": "Blink",
+              "strobe": "Strobe",
+              "breathe": "Breathe",
+              "rainbow": "Rainbow",
+              "cycle": "Color cycle",
+              "fade": "Color fade"
+            }
+          }
+        }
+      }
+    },
+    "number": {
+      "effect_speed": {
+        "name": "Effect speed"
+      }
+    },
+    "sensor": {
+      "last_error": {
+        "name": "Last error"
+      }
+    },
+    "binary_sensor": {
+      "hardware_problem": {
+        "name": "LED hardware"
+      }
+    }
+  },
+  "selector": {
+    "effect": {
+      "options": {
+        "off": "Off (static color)",
+        "blink": "Blink",
+        "strobe": "Strobe",
+        "breathe": "Breathe",
+        "rainbow": "Rainbow",
+        "cycle": "Color cycle",
+        "fade": "Color fade"
+      }
+    }
+  },
+  "services": {
+    "set_effect": {
+      "name": "Set effect",
+      "description": "Starts an LED effect with optional color, color list, speed and brightness.",
+      "fields": {
+        "effect": {
+          "name": "Effect",
+          "description": "Effect to run. 'Off' shows a static color."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Base color for blink, strobe and breathe: a name (red, darkorange, …), #RRGGBB or r,g,b."
+        },
+        "colors": {
+          "name": "Colors",
+          "description": "Colors for cycle and fade (names or #RRGGBB)."
+        },
+        "speed": {
+          "name": "Speed",
+          "description": "Effect speed in milliseconds (blink/breathe: full period, rainbow: one cycle, cycle/fade: time per color)."
+        },
+        "brightness_pct": {
+          "name": "Brightness",
+          "description": "Brightness in percent."
+        }
+      }
+    }
+  }
+}
